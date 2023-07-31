@@ -1,0 +1,11 @@
+{
+    "name": "TranslateSkyblock",
+    "creator": "whats2000_",
+    "version": "0.0.1",
+    "entry": "index.js",
+    "description": "A project make skyblock into your language",
+    "requires": [
+        "Vigilance",
+        "PogData"
+    ]
+}
