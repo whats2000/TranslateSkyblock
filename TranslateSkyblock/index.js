@@ -1,5 +1,6 @@
 import Settings from "./config";
 import { initializeEventListeners, updateEventListeners } from "./utils/EventListener";
+import { updateSelectLanguage } from "./utils/LoadLanguage";
 
 import "./features/Tooltips";
 
@@ -13,8 +14,11 @@ register("command", () => {
 register("guiKey", (char, key, gui, event) => {
     if (key == 1 && settingOpen) {
         updateEventListeners();
+        updateSelectLanguage();
         settingOpen = false;
     }
 });
 
 initializeEventListeners();
+
+updateSelectLanguage()

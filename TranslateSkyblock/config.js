@@ -4,6 +4,7 @@ import { @Vigilant, @ButtonProperty, @TextProperty, @SwitchProperty, @DecimalSli
 })
 class Settings {
 
+
     @SwitchProperty({
         name: "Translate Hover Item",
         description: "When hover in inventory, the tooltips will be translate",
@@ -11,6 +12,15 @@ class Settings {
         subcategory: "Translate Hover Item",
     })
     toolTipsTranslate = false;
+
+    @SelectorProperty({
+        name: "Language Setting",
+        description: "Select the language you want load",
+        category: "Language Setting",
+        subcategory: "Language Setting",
+        options: ["Default", "繁體中文"],
+    })
+    selectLanguage = 0;
 
     constructor() {
         this.initialize(this);
