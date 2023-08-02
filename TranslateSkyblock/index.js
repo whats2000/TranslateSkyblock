@@ -2,6 +2,8 @@ import Settings from "./config";
 import { initializeEventListeners, updateEventListeners } from "./utils/EventListener";
 import { updateSelectLanguage } from "./utils/LoadLanguage";
 
+import "./utils/command";
+
 import "./features/Tooltips";
 
 let settingOpen = false;

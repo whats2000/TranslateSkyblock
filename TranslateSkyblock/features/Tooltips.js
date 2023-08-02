@@ -1,4 +1,5 @@
 import Settings from '../config';
+import { getUUID } from '../utils/function';
 import { getTooltipsTranslate } from '../utils/LoadLanguage';
 import { registerEventListener } from '../utils/EventListener';
 
@@ -7,12 +8,15 @@ let changedItem = "";
 registerEventListener(() => Settings.toolTipsTranslate,
     register("itemTooltip", (lore, item, event) => {
         if (!getTooltipsTranslate()) return;
-        if (item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid === changedItem) return;
+        const UUID = getUUID(item);
+
+        // ChatLib.chat(`${itemIndex} ${changedItem}`)
+        if (UUID === changedItem) return;
 
         const tooltip = getTooltipsTranslate();
         let newLore = [];
         let index = 0;
-        for (let i = 1; i < 50; i++) {
+        for (let i = 1; i < 100; i++) {
             if (lore[i] === undefined || lore[i] === "§5§o§oDyed") return;
 
             if (lore[i].replace("§5§o", "").includes("RARITY UPGRADE") ||
@@ -24,7 +28,7 @@ registerEventListener(() => Settings.toolTipsTranslate,
 
             for (let key in tooltip.rare) {
                 if (lore[i]?.includes(key)) {
-                    changedItem = item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid;
+                    changedItem = UUID;
                     item.setLore(newLore);
                     return;
                 }
