@@ -2,18 +2,12 @@ import Settings from '../config';
 import { getTooltipsTranslate } from '../utils/LoadLanguage';
 import { registerEventListener } from '../utils/EventListener';
 
-let changedItem = [];
-
-function addItemToChangedList(itemId) {
-    if (changedItem.indexOf(itemId) === -1) {
-        changedItem.push(itemId);
-    }
-}
+let changedItem = "";
 
 registerEventListener(() => Settings.toolTipsTranslate,
     register("itemTooltip", (lore, item, event) => {
         if (!getTooltipsTranslate()) return;
-        if (changedItem.indexOf(item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid) !== -1) return;
+        if (item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid === changedItem) return;
 
         const tooltip = getTooltipsTranslate();
         let newLore = [];
@@ -30,7 +24,7 @@ registerEventListener(() => Settings.toolTipsTranslate,
 
             for (let key in tooltip.rare) {
                 if (lore[i]?.includes(key)) {
-                    addItemToChangedList(item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid);
+                    changedItem = item.getNBT()?.toObject()?.tag?.ExtraAttributes?.uuid;
                     item.setLore(newLore);
                     return;
                 }
@@ -48,5 +42,5 @@ registerEventListener(() => Settings.toolTipsTranslate,
 );
 
 register("worldUnload", () => {
-    changedItem = [];
+    changedItem = "";
 });
