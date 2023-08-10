@@ -1,7 +1,7 @@
 {
     "name": "TranslateSkyblock",
     "creator": "whats2000_",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "entry": "index.js",
     "description": "A project make skyblock into your language",
     "requires": [

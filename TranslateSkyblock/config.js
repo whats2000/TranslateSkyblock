@@ -27,7 +27,7 @@ class Settings {
     }
 
     sync() {
-        ChatLib.command("GriffinOWO sync", true);
+        ChatLib.command("TranslateSkyblock sync", true);
     }
 }
 

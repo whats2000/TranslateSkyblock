@@ -1,4 +1,4 @@
-import { getID } from './function';
+import { getID, getUUID } from './function';
 
 const stopWord = [
     "COMMON",
@@ -44,3 +44,16 @@ register("command", () => {
 
     ChatLib.chat(show_message);
 }).setName("lore");
+
+register("command", () => {
+    const Item = Player.getHeldItem();
+    const UUID = getUUID(Item);
+
+    if (!UUID) {
+        ChatLib.chat(`&2[TraslateSkyblock] &fFail to get uuid, do you use a empty hand or stackable items?`);
+        return;
+    }
+
+    ChatLib.chat(`&2[TraslateSkyblock] &fThe item UUID is`);
+    ChatLib.chat(`${UUID}`);
+}).setName("uuid");
